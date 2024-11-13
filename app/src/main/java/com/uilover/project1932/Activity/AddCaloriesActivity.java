@@ -3,6 +3,7 @@ package com.uilover.project1932.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class AddCaloriesActivity extends AppCompatActivity {
 
     private EditText edtFood;
     private TextView txtNutritionDisplay;
+    private ProgressBar progressBar;
     private apiinterface nutritionixAPI;
 
     @Override
@@ -30,8 +32,9 @@ public class AddCaloriesActivity extends AppCompatActivity {
         setContentView(R.layout.daily_calories);
 
         // Initialize the views
-        edtFood = findViewById(R.id.edtFood);
-        txtNutritionDisplay = findViewById(R.id.txtNutritionDisplay);
+        //edtFood = findViewById(R.id.);
+        //txtNutritionDisplay = findViewById(R.id.txtNutritionDisplay);
+        progressBar = findViewById(R.id.progressBar);
 
         // Initialize Retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -42,7 +45,7 @@ public class AddCaloriesActivity extends AppCompatActivity {
         nutritionixAPI = retrofit.create(apiinterface.class);
 
         // Button to get nutrition data
-        findViewById(R.id.btnGetNutrition).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.progressBar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String foodItem = edtFood.getText().toString().trim();
@@ -58,8 +61,11 @@ public class AddCaloriesActivity extends AppCompatActivity {
 
     private void fetchNutritionData(String foodItem) {
         String appId = "c210203f"; // Replace with your App ID
-        String apiKey =
-                "161a71bfd586b32f09b509aaa44b91e0"; // Replace with your API Key
+        String apiKey = "161a71bfd586b32f09b509aaa44b91e0"; // Replace with your API Key
+
+        // Show the progress bar while loading
+        progressBar.setVisibility(View.VISIBLE);
+        txtNutritionDisplay.setText(""); // Clear the previous data
 
         // Fetching detailed nutrition data
         Call<ProteinCalorieResponse> call = nutritionixAPI.getNutritionData(
@@ -68,6 +74,9 @@ public class AddCaloriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<ProteinCalorieResponse>() {
             @Override
             public void onResponse(Call<ProteinCalorieResponse> call, Response<ProteinCalorieResponse> response) {
+                // Hide the progress bar
+                progressBar.setVisibility(View.GONE);
+
                 if (response.isSuccessful() && response.body() != null) {
                     List<ProteinCalorieResponse.Hit> hits = response.body().getHits();
                     if (!hits.isEmpty()) {
@@ -84,25 +93,24 @@ public class AddCaloriesActivity extends AppCompatActivity {
                         double sodium = fields.getNf_sodium();
 
                         // Display the nutritional information
-                        txtNutritionDisplay.setText("Food: " + itemName + "\n" +
-                                "Calories: " + calories + " kcal\n" +
-                                "Protein: " + protein + " g\n" +
-                                "Fat: " + fat + " g\n" +
-                                "Carbs: " + carbs + " g\n" +
-                                "Sugars: " + sugars + " g\n" +
-                                "Fiber: " + fiber + " g\n" +
-                                "Sodium: " + sodium + " mg");
+                        txtNutritionDisplay.setText(String.format(
+                                "Food: %s\nCalories: %.2f kcal\nProtein: %.2f g\nFat: %.2f g\nCarbs: %.2f g\nSugars: %.2f g\nFiber: %.2f g\nSodium: %.2f mg",
+                                itemName, calories, protein, fat, carbs, sugars, fiber, sodium));
                     } else {
                         txtNutritionDisplay.setText("No data found for the specified food item.");
                     }
                 } else {
                     txtNutritionDisplay.setText("Error: " + response.message());
+                    Toast.makeText(AddCaloriesActivity.this, "Failed to get data. Please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ProteinCalorieResponse> call, Throwable t) {
+                // Hide the progress bar and show error
+                progressBar.setVisibility(View.GONE);
                 txtNutritionDisplay.setText("Network request failed.");
+                Toast.makeText(AddCaloriesActivity.this, "Network request failed. Check your connection.", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });
