@@ -320,6 +320,9 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onHeathTrackClick"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
                     android:orientation="vertical">

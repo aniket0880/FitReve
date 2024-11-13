@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // click event for health track
+    public void onHeathTrackClick(View view){
+        Intent intent=new Intent(MainActivity.this, healthtrack_Activity.class);
+        startActivity(intent);
+    }
+
     private ArrayList<Workout> getData() {
         ArrayList<Workout> list = new ArrayList<>();
         list.add(new Workout("Running", "You just woke up...", "pic_1", 160, "9 min", getLession_1()));

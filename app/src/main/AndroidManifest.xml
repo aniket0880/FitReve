@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.ACCESS_HEALTH_DATA" />
+    <uses-permission android:name="android.permission.ACCESS_HEALTH_DATA_WRITE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,25 +19,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1932"
+        android:name=".service.App"
         tools:targetApi="31">
+
+        <activity
+            android:name=".Activity.healthtrack_Activity"
+            android:exported="true" />
+
         <activity
             android:name=".Activity.AddCaloriesActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.WorkoutActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".service.StepDetectorService" />
     </application>
 
 </manifest>
