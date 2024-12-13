@@ -1,12 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
 
 }
 
 
 android {
     namespace 'com.uilover.project1932'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.uilover.project1932"
@@ -31,6 +32,9 @@ android {
     buildFeatures{
         viewBinding true
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -44,9 +48,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation libs.core.ktx
 
-
-
-    
 
 }

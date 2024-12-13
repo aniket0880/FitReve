@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:name=".service.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,30 +20,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1932"
-        android:name=".service.App"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Activity.Ai_Page"
+            android:exported="false" />
         <activity
             android:name=".Activity.healthtrack_Activity"
             android:exported="true" />
-
         <activity
             android:name=".Activity.AddCaloriesActivity"
             android:exported="false" />
-
         <activity
             android:name=".Activity.WorkoutActivity"
             android:exported="false" />
-
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".Activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
