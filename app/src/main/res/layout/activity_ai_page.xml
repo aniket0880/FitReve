@@ -1,95 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".Activity.Ai_Page"
     android:background="@color/mainColor">
 
+    <!-- Heading Section -->
+    <TextView
+        android:id="@+id/headingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="AI Meal and Workout Planner"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <!-- Chat History Section -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headingTextView"
+        android:layout_above="@id/inputLayout"
+        android:padding="8dp"
+        android:scrollbars="vertical" />
+
+    <!-- Input and Send Button Section -->
     <LinearLayout
+        android:id="@+id/inputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
         android:padding="8dp">
 
-        <!-- Header Section -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/txtDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chatbot"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"/>
-
-            <ImageView
-                android:id="@+id/btnSettings"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:contentDescription="Settings"
-                android:src="@drawable/img" />
-        </RelativeLayout>
-
-        <!-- RecyclerView for Chat Messages -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewChat"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="80dp"
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:padding="8dp"/>
+            android:hint="Type a message"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_bg"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="8dp" />
 
-        <!-- Layout for Text Input and Send Button at the Bottom -->
-        <LinearLayout
-            android:id="@+id/layoutInput"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_vertical">
-
-            <EditText
-                android:id="@+id/editTextMessage"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:hint="Type a message"
-                android:textSize="16sp"
-                android:background="@drawable/edittext_bg"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:layout_marginEnd="8dp"/>
-
-            <ImageView
-                android:id="@+id/sendButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/orange"
-                android:clickable="true"
-                android:contentDescription="Send Message"
-                android:focusable="true"
-                android:src="@android:drawable/ic_menu_send" />
-        </LinearLayout>
-
-        <!-- ProgressBar for loading state -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_gravity="center"/>
-
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/orange"
+            android:contentDescription="Send Message"
+            android:src="@android:drawable/ic_menu_send" />
     </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>
