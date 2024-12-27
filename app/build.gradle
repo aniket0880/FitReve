@@ -61,6 +61,7 @@ dependencies {
     implementation libs.core.ktx
     implementation libs.firebase.auth
     implementation libs.firebase.database
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
 
 
 }
