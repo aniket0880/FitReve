@@ -34,10 +34,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/userNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ashahar Yunus Khan"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -302,7 +301,7 @@
                     android:orientation="vertical"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick=""
+                    android:onClick="onHealthTrackClick"
                     >
 
                     <ImageView
@@ -326,7 +325,7 @@
                     android:layout_width="0dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="onHeathTrackClick"
+                    android:onClick="onHealthTrackClick"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
                     android:orientation="vertical">
@@ -343,7 +342,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Favorite"
+                        android:text="Health"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -361,7 +360,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/btn_3"
+                        app:srcCompat="@android:drawable/ic_menu_send"
                         app:tint="@color/white" />
 
                     <TextView
@@ -369,7 +368,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Cart"
+                        android:text="Ai Helper"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
                 </LinearLayout>

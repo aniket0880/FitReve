@@ -3,20 +3,30 @@ package com.uilover.project1932.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.uilover.project1932.Adapter.WorkoutAdapter;
 import com.uilover.project1932.Domain.Lession;
 import com.uilover.project1932.Domain.Workout;
+import com.uilover.project1932.R;
 import com.uilover.project1932.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     ActivityMainBinding binding;
+    private FirebaseAuth auth;
+    private DatabaseReference database;
+    private TextView userNameTextView;  // Reference to display the user's name
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,26 +34,49 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Initialize Firebase Auth and Database
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
+
+        // Find the TextView to display the user's name
+        userNameTextView = findViewById(R.id.name);  // Add a TextView with this ID in your XML layout
+
+        // Get the current user and fetch their name from Firebase if logged in
+        String userId = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : null;
+        if (userId != null) {
+            // Fetch user name from Firebase Database
+            database.child("user").child(userId).get().addOnSuccessListener(snapshot -> {
+                if (snapshot.exists()) {
+                    String userName = snapshot.child("userName").getValue(String.class);
+                    if (userName != null) {
+                        userNameTextView.setText(userName);  // Display the name in the TextView
+                    }
+                }
+            }).addOnFailureListener(e -> {
+                Toast.makeText(MainActivity.this, "Failed to load user data", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        // Set up RecyclerView
         binding.view1.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
         binding.view1.setAdapter(new WorkoutAdapter(getData()));
     }
 
     // Click event for Daily Calories
     public void onDailyCaloriesClick(View view) {
-        // Start AddCaloriesActivity when "Daily Calories" is clicked
         Intent intent = new Intent(MainActivity.this, AddCaloriesActivity.class);
         startActivity(intent);
     }
 
-    // click event for health track
-    public void onHeathTrackClick(View view){
-        Intent intent=new Intent(MainActivity.this, healthtrack_Activity.class);
+    // Click event for Health Track
+    public void onHealthTrackClick(View view) {
+        Intent intent = new Intent(MainActivity.this, healthtrack_Activity.class);
         startActivity(intent);
     }
 
-    // click event for Ai chat bot
-    public void onChatbotClick(View view){
-        Intent intent =new Intent(MainActivity.this, Ai_Page.class);
+    // Click event for AI Chatbot
+    public void onChatbotClick(View view) {
+        Intent intent = new Intent(MainActivity.this, Ai_Page.class);
         startActivity(intent);
     }
 
