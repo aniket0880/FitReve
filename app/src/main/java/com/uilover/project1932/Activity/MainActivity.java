@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.uilover.project1932.Adapter.WorkoutAdapter;
@@ -23,10 +22,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
     private FirebaseAuth auth;
     private DatabaseReference database;
-    private TextView userNameTextView;  // Reference to display the user's name
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +36,21 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
 
-        // Find the TextView to display the user's name
-        userNameTextView = findViewById(R.id.name);  // Add a TextView with this ID in your XML layout
-
-        // Get the current user and fetch their name from Firebase if logged in
-        String userId = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : null;
-        if (userId != null) {
-            // Fetch user name from Firebase Database
+        // Check if the user is logged in
+        if (auth.getCurrentUser() != null) {
+            String userId = auth.getCurrentUser().getUid();
             database.child("user").child(userId).get().addOnSuccessListener(snapshot -> {
                 if (snapshot.exists()) {
                     String userName = snapshot.child("userName").getValue(String.class);
                     if (userName != null) {
-                        userNameTextView.setText(userName);  // Display the name in the TextView
+                        binding.userNameTextView.setText(userName);  // Use View Binding
                     }
                 }
             }).addOnFailureListener(e -> {
                 Toast.makeText(MainActivity.this, "Failed to load user data", Toast.LENGTH_SHORT).show();
             });
+        } else {
+            binding.userNameTextView.setText("Guest User");  // Set a default name if not logged in
         }
 
         // Set up RecyclerView

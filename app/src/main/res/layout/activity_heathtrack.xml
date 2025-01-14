@@ -20,22 +20,22 @@ android:gravity="center">
     android:layout_height="wrap_content"
     android:text="Fit"
     android:textSize="30sp"
-android:layout_gravity="center"
-android:layout_margin="5dp"
-android:textColor="#000"
-android:textStyle="bold"
-android:fontFamily="sans-serif-thin"/>
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:textColor="@color/orange"
+    android:textStyle="bold"
+    android:fontFamily="sans-serif-thin"/>
 
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Reve"
     android:textSize="30sp"
-android:layout_gravity="center"
-android:layout_margin="5dp"
-android:textColor="#000"
-android:textStyle="bold"
-android:fontFamily="cursive"/>
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:textColor="@color/orange"
+    android:textStyle="bold"
+    android:fontFamily="cursive"/>
 
 </LinearLayout>
 

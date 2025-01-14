@@ -15,10 +15,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
-        android:text="AI Meal and Workout Planner"
+        android:text="FitMate AI"
         android:textSize="24sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
+        android:textColor="@color/orange"
+        android:textStyle="italic"
         android:gravity="center" />
 
     <!-- Chat History Section -->
