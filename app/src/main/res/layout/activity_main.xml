@@ -8,6 +8,7 @@
     android:background="@color/mainColor"
     tools:context=".Activity.MainActivity">
 
+    <!-- ScrollView to make content scrollable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,6 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- ConstraintLayout for Welcome and User details -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -55,6 +57,7 @@
                     app:srcCompat="@drawable/profile" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Search EditText -->
             <EditText
                 android:id="@+id/editTextText"
                 android:layout_width="match_parent"
@@ -74,6 +77,7 @@
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
+            <!-- Daily Monitoring Section -->
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
@@ -85,12 +89,14 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
+            <!-- Horizontal Monitoring Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:orientation="horizontal">
 
+                <!-- Daily Calories Item -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -101,7 +107,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/monitor1" />
@@ -118,23 +123,21 @@
                         android:textStyle="bold" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Daily Colories"
+                        android:text="Daily Calories"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
 
+                <!-- Sleep Time Item -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-
                     android:layout_weight="0.3333"
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/monitor2" />
@@ -151,7 +154,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sleep Time"
@@ -159,10 +161,12 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
+                <!-- Total Workout Item -->
                 <LinearLayout
+                    android:clickable="true"
+                    android:onClick="onWorkoutClick"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-
                     android:layout_weight="0.3333"
                     android:orientation="vertical">
 
@@ -193,6 +197,7 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- Banner Section -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -231,6 +236,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Other Workout Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -256,6 +262,7 @@
                     android:textColor="@color/orange" />
             </LinearLayout>
 
+            <!-- RecyclerView for other workouts -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/view1"
                 android:layout_width="match_parent"
@@ -263,6 +270,7 @@
                 android:clipToPadding="false"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -275,6 +283,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Bottom Navigation -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
@@ -292,9 +301,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
+                <!-- Home Tab -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -302,8 +313,7 @@
                     android:orientation="vertical"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="onHealthTrackClick"
-                    >
+                    android:onClick="onHealthTrackClick">
 
                     <ImageView
                         android:id="@+id/imageView5"
@@ -322,6 +332,7 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
+                <!-- Health Tab -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:clickable="true"
@@ -332,14 +343,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/btn_2"
                         app:tint="@color/white" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -348,6 +357,7 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
+                <!-- FitMate AI Tab -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -358,22 +368,21 @@
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/ic_menu_send"
+                        app:srcCompat="@drawable/search"
                         app:tint="@color/white" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Ai Helper"
+                        android:text="FitMate AI"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
+                <!-- Profile Tab -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:clickable="true"
@@ -383,14 +392,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/btn_4"
                         app:tint="@color/white" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -398,8 +405,10 @@
                         android:textAlignment="center"
                         android:textColor="@color/white" />
                 </LinearLayout>
+
             </LinearLayout>
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,15 +20,18 @@
         android:theme="@style/Theme.Project1932"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.Profile_Page"
+            android:name=".Activity.ExerciseActivity"
             android:exported="false" />
-        <!-- Activities -->
+        <activity
+            android:name=".Activity.Profile_Page"
+            android:exported="false" /> <!-- Activities -->
         <activity
             android:name=".Activity.StepDetectorService"
             android:exported="false" />
         <activity
             android:name=".Activity.SignUp_Activity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.Login_Activity"
             android:exported="false" />

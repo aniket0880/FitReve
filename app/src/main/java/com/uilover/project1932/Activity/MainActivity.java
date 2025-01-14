@@ -80,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
     public void onProfileClick(View view){
         Intent intent =new Intent(MainActivity.this, Profile_Page.class);
         startActivity(intent);
+    }
 
+    public void onWorkoutClick(View view){
+        Intent intent=new Intent(MainActivity.this, ExerciseActivity.class);
+        startActivity(intent);
     }
 
     private ArrayList<Workout> getData() {
