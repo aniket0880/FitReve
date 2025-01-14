@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    tools:context=".Activity.SignUp_Activity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="133dp"
+                android:layout_marginTop="48dp"
+                app:srcCompat="@drawable/logo_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FiT"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="45sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange"/>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reve"
+                    android:textColor="@color/orange"
+                    android:textSize="45sp"/>
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:textColor="@color/white"
+                android:ems="10"
+                android:textColorHint="@color/white"
+                android:textAlignment="center"
+                android:hint="Name"
+                android:background="@color/darkBlue"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <!-- Email EditText -->
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:hint="Email address"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                android:ems="10"
+                android:background="@color/darkBlue"
+                android:inputType="text" />
+
+            <!-- Password EditText -->
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:hint="Password"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                android:ems="10"
+                android:background="@color/darkBlue"
+                android:inputType="textPassword" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/createbtn"
+                style="@android:style/Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:background="@color/orange"
+                android:text="Signup"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/alreadyhavebutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="16dp"
+                android:text="Are you a member? Login"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

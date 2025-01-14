@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "68116929039",
+    "project_id": "fitreve-d5715",
+    "storage_bucket": "fitreve-d5715.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68116929039:android:bfde1383d7394b2595217a",
+        "android_client_info": {
+          "package_name": "com.uilover.project1932"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFGdrBw_-7ZSMUo9J7oRjCOtH8Lc0imEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
