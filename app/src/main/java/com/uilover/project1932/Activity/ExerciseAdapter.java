@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +45,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
         public ExerciseViewHolder(@NonNull View itemView) {
             super(itemView);
-            exerciseNameTextView = itemView.findViewById(R.id.exerciseNameTextView);
+            exerciseNameTextView = itemView.findViewById(R.id.exerciseName);
         }
     }
 }

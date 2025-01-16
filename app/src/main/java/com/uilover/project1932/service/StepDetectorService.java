@@ -8,6 +8,8 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,8 +17,6 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
-import android.content.pm.ServiceInfo;
-
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
@@ -34,6 +34,13 @@ public class StepDetectorService extends Service implements SensorEventListener 
     @SuppressLint("ForegroundServiceType")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // Check if the required permissions are granted
+        if (!checkPermissions()) {
+            Toast.makeText(this, "Missing required permissions", Toast.LENGTH_SHORT).show();
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+
         // Create the notification channel for Android 8.0+ (API 26+)
         createNotificationChannel();
 
@@ -49,7 +56,7 @@ public class StepDetectorService extends Service implements SensorEventListener 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 startForegroundServiceWithType();
             } else {
-                startForeground(NOTIFICATION_ID, createNotification()); // Fallback for older Android versions
+                startForeground(NOTIFICATION_ID, createNotification());
             }
 
             // Update notification with step count and call the callback
@@ -94,9 +101,7 @@ public class StepDetectorService extends Service implements SensorEventListener 
         Log.d("SERVICE", sensor.toString());
     }
 
-    // Method to create a notification for foreground service
     private Notification createNotification() {
-        // Create a basic notification for the step detector
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Step Detector Service")
                 .setContentText("Tracking your steps...")
@@ -105,14 +110,12 @@ public class StepDetectorService extends Service implements SensorEventListener 
                 .build();
     }
 
-    // Method to start the service in the foreground with a specific type (for Android 12 and above)
     @SuppressLint("ForegroundServiceType")
     private void startForegroundServiceWithType() {
         Notification notification = createNotification();
         startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH);
     }
 
-    // Create notification channel for Android 8.0+ (API 26+)
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
@@ -125,6 +128,15 @@ public class StepDetectorService extends Service implements SensorEventListener 
             if (manager != null) {
                 manager.createNotificationChannel(channel);
             }
+        }
+    }
+
+    private boolean checkPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            return checkSelfPermission(android.Manifest.permission.FOREGROUND_SERVICE_HEALTH) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(android.Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_GRANTED;
+        } else {
+            return true;
         }
     }
 
