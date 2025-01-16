@@ -36,6 +36,15 @@ FitReve is a comprehensive fitness application designed to revolutionize the way
 - **Personalized Dashboard**: Provides an overview of progress, including step count, meal intake, and workout completion rates.  
 - **Community Engagement**: Connects users with a fitness community to share progress, tips, and motivation.
 
+
+### Screenshots
+![download (2)](https://github.com/user-attachments/assets/4642b6f2-c83e-4352-9cda-84720593a923)
+![download (1)](https://github.com/user-attachments/assets/1fb76f06-14f9-4571-8905-6d4e8a32993c)
+![14-imageonline co-merged](https://github.com/user-attachments/assets/e8f0b02f-a95e-4d8e-b5b7-6d89aa237d59)
+
+
+
+
 ---
 
 ## Tech Stack
